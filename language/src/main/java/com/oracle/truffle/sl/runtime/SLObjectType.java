@@ -328,6 +328,7 @@ public final class SLObjectType extends ObjectType {
                         @Cached("receiver.getShape()") Shape shape,
                         @Cached("lookupLocation(shape, name, value)") Location location) {
             try {
+                receiver.copy(shape);
                 location.set(receiver, value, shape);
 
             } catch (IncompatibleLocationException | FinalLocationException ex) {
@@ -359,6 +360,7 @@ public final class SLObjectType extends ObjectType {
                         @Cached("defineProperty(oldShape, name, value)") Shape newShape,
                         @Cached("lookupLocation(newShape, name)") Location newLocation) {
             try {
+                receiver.copy(oldShape);
                 newLocation.set(receiver, value, oldShape, newShape);
 
             } catch (IncompatibleLocationException ex) {
